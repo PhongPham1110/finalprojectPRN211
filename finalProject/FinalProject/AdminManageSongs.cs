@@ -95,9 +95,10 @@ namespace ProjectPRN211
         private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             int songNumber = (int)dataGridView1.Rows[e.RowIndex].Cells["SongNumber"].Value;
-            Song song = _context.Songs.Find(songNumber);
             EditAddMusic update = new EditAddMusic(songNumber);
-            update.Show();
+            DialogResult dr = update.ShowDialog();
+            if (dr == DialogResult.OK)
+                bindGrid();
         }
     }
 }

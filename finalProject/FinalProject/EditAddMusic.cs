@@ -58,70 +58,34 @@ namespace User_MusicStore
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if (int.Parse(textBox2.Text) == -1)
+            try
             {
-                try
-                {
-                    if (imageText.Text != "")
-                    {
-                        File.Copy(imageText.Text, Application.StartupPath + @"\Image\" + Path.GetFileName(imageText.Text));
-                    }
+                if (imageText.Text.Length > 0)
+                    File.Copy(imageText.Text, Application.StartupPath + @"\Image\" + Path.GetFileName(imageText.Text));
+                if (songText.Text.Length > 0)
                     File.Copy(songText.Text, Application.StartupPath + @"\song\" + Path.GetFileName(songText.Text));
-                }
-                catch (Exception ex)
+                if (imageText.Text.Length > 0 && songText.Text.Length > 0 && textBox1.Text.Length > 0)
                 {
-                    MessageBox.Show(ex.Message);
-                    AdminManageSongs adm1 = new AdminManageSongs();
-                    adm1.Show();
-                    this.Hide();
+                    Song? song = _context.Songs.Find(int.Parse(textBox2.Text));
+                    {
+                        song.Author = textBox5.Text;
+                        song.Name = textBox1.Text;
+                        song.Lyric = textBox4.Text;
+                        song.AudioPath = Path.GetFileName(songText.Text);
+                        song.ImgPath = Path.GetFileName(imageText.Text);
+                        song.IsHide = false;
+                    };
+                    _context.Songs.Update(song);
+                    _context.SaveChanges();
+                    MessageBox.Show("Song Edited!");
+                    this.Close();
                 }
-                Song song = new()
-                {
-                    Author = textBox5.Text,
-                    Name = textBox1.Text,
-                    Lyric = textBox4.Text,
-                    AudioPath = Path.GetFileName(songText.Text),
-                    ImgPath = Path.GetFileName(imageText.Text),
-                    IsHide = false,
-                };
-                _context.Songs.Add(song);
-                _context.SaveChanges();
-                MessageBox.Show("add thanh cong bai hat moi");
-                AdminManageSongs adm = new AdminManageSongs();
-                adm.Show();
-                this.Hide();
+                else
+                    MessageBox.Show("Missing Fields");
             }
-            else
+            catch (Exception ex)
             {
-                try
-                {
-                    if (imageText.Text != "")
-                    {
-                        File.Copy(imageText.Text, Application.StartupPath + @"\Image\" + Path.GetFileName(imageText.Text));
-                    }
-                    File.Copy(songText.Text, Application.StartupPath + @"\song\" + Path.GetFileName(songText.Text));
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
-                //File.Copy(imageText.Text, Application.StartupPath + @"\Image\" + Path.GetFileName(imageText.Text));
-                //File.Copy(songText.Text, Application.StartupPath + @"\song\" + Path.GetFileName(songText.Text));
-                Song? song = _context.Songs.Find(int.Parse(textBox2.Text));
-                {
-                    song.Author = textBox5.Text;
-                    song.Name = textBox1.Text;
-                    song.Lyric = textBox4.Text;
-                    song.AudioPath = Path.GetFileName(songText.Text);
-                    song.ImgPath = Path.GetFileName(imageText.Text);
-                    song.IsHide = false;
-                };
-                _context.Songs.Update(song);
-                _context.SaveChanges();
-                MessageBox.Show("Song Edited!");
-                AdminManageSongs adm = new AdminManageSongs();
-                adm.Show();
-                this.Hide();
+                MessageBox.Show(ex.Message);
             }
         }
 
@@ -138,6 +102,11 @@ namespace User_MusicStore
             }
         }
         private void textBox2_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void EditAddMusic_FormClosing(object sender, FormClosingEventArgs e)
         {
 
         }

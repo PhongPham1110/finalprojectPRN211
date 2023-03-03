@@ -4202,11 +4202,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Asus\\source\\repos\\finalProject\\FinalProject\\ProjectPRN.csproj",
+      "projectUniqueName": "C:\\Users\\Asus\\Desktop\\finalprojectPRN211\\finalProject\\FinalProject\\ProjectPRN.csproj",
       "projectName": "ProjectPRN",
-      "projectPath": "C:\\Users\\Asus\\source\\repos\\finalProject\\FinalProject\\ProjectPRN.csproj",
+      "projectPath": "C:\\Users\\Asus\\Desktop\\finalprojectPRN211\\finalProject\\FinalProject\\ProjectPRN.csproj",
       "packagesPath": "C:\\Users\\Asus\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Asus\\source\\repos\\finalProject\\FinalProject\\obj\\",
+      "outputPath": "C:\\Users\\Asus\\Desktop\\finalprojectPRN211\\finalProject\\FinalProject\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Asus\\AppData\\Roaming\\NuGet\\NuGet.Config",
